@@ -1,0 +1,28 @@
+{% extends 'awwa/base.html' %}
+{%  block content %}
+
+<div class="container">
+<div class="row">
+  {% if user%}
+  <h2>Found {{ posts|length }} named {{message}}</h2>
+  {% else %}
+  <h2> There is no user by this name {{message}}</h2>
+  {% endif %}
+</div>
+</div>
+<div class="container">
+{% for post in posts %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{post.image.url}}" alt="{{ post.title}}" class="img-responsive" >">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.desc}}</p>
+    <div class="border-top text-center">
+      <a href="{{post.link}}" target="_blank" class="btn btn-primary">View Live Site</a>
+  </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}

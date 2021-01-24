@@ -1,0 +1,23 @@
+{% extends "awwa/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container" style="padding-top: 10%;">
+  <div class="content-section" style="padding-top: 10%">
+    <form action="" method="post">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Join Today</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" type="submit">
+          Sign Up
+        </button>
+      </div>
+      <div class="border-top pt-3">
+        <small>Already have an account? <a class=" btn btn-outline-info ml-2" href="{% url 'register' %}">Login</a>
+        </small>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

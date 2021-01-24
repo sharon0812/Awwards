@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&family=Bentham&family=Contrail+One&family=Italianno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&family=Bentham&family=Italianno&display=swap" rel="stylesheet">
+
+
+
+    {% if  title %}
+        <title>Awwards {{ title }}</title>
+    {% else %}
+        <title>Awwards</title>
+    {% endif %}
+</head>
+<body>
+    
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
+          <div class="container">
+            <i class="fa fa-bars fa-2x" aria-hidden="true" >MENU</i>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <form action="{% url 'search_results' %}">
+                <input type="text" placeholder="Search.." name="username">
+                <button type="submit" value="Search"><i class="fa fa-search"></i></button>
+              </form>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav ml-auto">
+                <a class="navbar-brand " style="color: black; font-size: 40px;" href="/">awwwards</a>
+              </div>
+            
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <!-- <a class="nav-item nav-link" href="{% url 'post-create' %}" style="color: black;">New Post</a> -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="rounded-circle" width="30" height="30" src="{{ user.profile.image.url }}">
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-item nav-link" href="{% url 'profile' %}" style="color: black;">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: black;">Logout</a>
+                  </div>
+                </li>
+                <div class="">
+                  <a class="btn btn-info" style="border-radius: 50px; color: black;" href="{% url 'post-create' %}">Submit your site here   
+                  </a>
+               </div> 
+                {% else %}
+                  <a class="nav-item nav-link" style="color: black;" href="{% url 'login' %}">Login</a>
+                  <a class="nav-item nav-link" style="color: black;" href="{% url 'register' %}">Register</a>
+                {% endif %}
+              </div>
+            </div>
+         </div>
+        </nav>
+    </header>
+    <main role="main" class="container-fluid">
+        <div class="row">
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% block content %}
+          {% endblock %}
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

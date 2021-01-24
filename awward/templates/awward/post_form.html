@@ -1,0 +1,24 @@
+{% extends "awwa/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container m-3" style="padding-top:10%" > 
+    <div class="row">
+        <div class="col-md-8">
+            <div class="border">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom md-4">Post Projects</legend>
+                        {{ form|crispy}}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends "awwa/base.html" %}
+{% load static%}
+{% load ratings %}
+{% block styles %}
+{% endblock%}
+{% block content %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+
+<div class="container-fluid text-light" style="padding-top:9%;">
+   <div style="height: 450px; width: 100%;  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url('{{ random_post.image.url}}'); background-size: cover;">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4" style="font-weight: 700; padding-top: 5%;">
+               <a style="border-radius: 50px; color: white; " target="_blank" href="https://newsnow254.herokuapp.com/">Site
+                  of the day
+               </a>
+               <small class="text"> 26th January 2021</small>
+               
+            </div>
+            
+            <div class="col-md-8">
+               <div style="float: right; margin-top: 5%; margin-right: 5%;">
+                  
+                  <a style="border-radius: 50%;" class="btn btn-outline-light" href="">Likes</a>
+                  <a style="border-radius: 50%;" class="btn btn-outline-light" href="">Collect</a>
+               </div>
+               
+   
+               <div class="title" style=" font-size: 30px; padding-top: 20%;
+               ">
+               <cite>Witness to history</cite>
+                  <h2>By <strong>Sharon Anyango</strong>From Nairobi,Kenya  </h2>
+               </div>
+               
+               
+            </div>
+            <div class="col-md-12">
+               <div class="" style="position: absolute; top: 100%; left: 10%; margin-top: 5%;">
+                  <a style="border-radius: 50%;" class="btn btn-outline-light" href="">Visit</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+   </div>
+</div>
+
+
+<div class="container">
+   <div class="row">
+      {% for post in posts %}
+      <div class="col-md-4">
+         <div class="card">
+            <div class="card-body">
+               {% if post.image %}
+               <img class="img-responsive" src="{{post.image.url }}" width="100%" ;>
+               {% endif %}
+            </div>
+            <h2 class="article-title">Title: {{ post.title }}</h2>
+            <p class="article-content"> Description: {{ post.desc }}</p>
+            <p>{{ post.technologies }}</p>
+            <small class="text"> Date posted: {{ post.post_date|date:"F d, Y" }}</small>
+            <p>{% ratings post %}</p>
+            <div class="card-footer">
+               <a href="{{ post.link }}" class="btn btn-info" target="_blank">Visit site</a>
+               <p><cite>By <strong>{{post.user}}</strong></cite></p>
+            </div>
+         </div>
+
+      </div>
+      {% endfor %}
+
+   </div>
+</div>
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+{% endblock content %}
