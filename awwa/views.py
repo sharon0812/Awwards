@@ -23,12 +23,12 @@ def index(request):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'awwad/post_detail.html'
+    template_name = 'awwa/post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['image', 'title', 'desc', 'link','technologies', 'post_date', 'user']
-    template_name = 'awwad/post_form.html'
+    template_name = 'awwa/post_form.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -41,10 +41,10 @@ def search_results(request):
         searched_username = Profile.search_by_username(search_term)
         message = f"{search_term}"
 
-        return render(request, 'awwad/search.html',{"message":message,"usernames": searched_username})
+        return render(request, 'awwa/search.html',{"message":message,"usernames": searched_username})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'awwad/search.html',{"message":message})
+        return render(request, 'awwa/search.html',{"message":message})
 
 
