@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'instagram',
+        'NAME': 'Awwards',
         'USER': 'moringa',
         'PASSWORD': 'Access',
     }
