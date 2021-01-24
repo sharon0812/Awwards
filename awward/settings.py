@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
+# import dj_database_url
 from decouple import config,Csv
 
 
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Awwards',
+        'NAME': 'awards',
         'USER': 'moringa',
         'PASSWORD': 'Access',
     }
