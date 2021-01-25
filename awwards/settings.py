@@ -85,9 +85,12 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'awards',
+        'NAME': 'awwards',
         'USER': 'moringa',
         'PASSWORD': 'Access',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+
     }
 }
 
