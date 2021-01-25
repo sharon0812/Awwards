@@ -44,7 +44,7 @@ class TestProfileModel(TestCase):
         query = Profile.objects.all()
         self.assertIsInstance(query[0],Profile)
         
-    def test_profile_str(self):
-        self.profile.save()
-        profile = Profile.objects.all()
-        self.assertTrue(str(profile[0]),f'{self.profile.user.username} Profile')
+    # def test_profile_str(self):
+    #     self.profile.save()
+    #     profile = Profile.objects.all()
+    #     self.assertTrue(str(profile[0]),f'{self.profile.user.username} Profile')
